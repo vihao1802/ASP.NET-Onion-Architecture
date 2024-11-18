@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<h1 class="text-center" id="name">Xin chào, </h1>
+
+<script>
+    const username = '@TempData["username"]';
+    const email = '@TempData["email"]';
+
+    if (username && email) {
+        localStorage.setItem('username', username);
+        localStorage.setItem('email', email);
+    }
+
+    if (localStorage.getItem('username')) {
+        document.getElementById('name').innerText += " " + localStorage.getItem('username');
+	}
+
+    
+</script>

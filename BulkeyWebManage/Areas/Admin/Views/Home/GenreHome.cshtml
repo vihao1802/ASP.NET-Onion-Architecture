@@ -1,0 +1,218 @@
+﻿@{
+    ViewData["Title"] = "GenreHome";
+}
+<div class="container-lg mt-5">
+    <h2 class="text-center">Thêm Thể Loại Sách</h2>
+    <form id="addGenre" class="d-flex flex-column">
+        <div class="form-group">
+            <label for="categoryName">Mã Thể Loại</label>
+            <input type="text" class="form-control" id="GenreId" readonly>
+        </div>
+        <div class="form-group">
+            <label for="categoryName">Tên Thể Loại</label>
+            <input type="text" class="form-control" id="Name" placeholder="Nhập tên thể loại sách">
+        </div>
+        <div class="form-group">
+            <label for="categoryDescription">Mô Tả</label>
+            <textarea class="form-control" id="Description" rows="3" placeholder="Nhập mô tả cho thể loại sách"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="status">Trạng Thái</label>
+            <select class="form-control" id="isActive">
+                <option value="true">Hoạt động</option>
+                <option value="false">Không hoạt động</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary ml-auto" id="add-btn">Thêm Thể Loại</button>
+        <div class="d-flex gap-2 justify-content-end">
+            <button type="submit" class="btn btn-secondary d-none" id="cancel-btn">Hủy</button>
+            <button type="submit" class="btn btn-primary d-none" id="save-btn">Lưu thay đổi</button>
+        </div>
+    </form>
+
+    <h2 class="text-center mt-5">Danh Sách Thể Loại Sách</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên Thể Loại</th>
+                <th>Mô Tả</th>
+                <th>Trạng Thái</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    async function addGenre() {
+		const name = document.getElementById('Name').value;
+		const description = document.getElementById('Description').value;
+        const isActiveVal = document.getElementById('isActive').value === 'true';
+
+        const response = await fetch('/api/genres', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name,
+				description,
+                isActive: isActiveVal
+			})
+		});
+
+		if (response.ok) {
+			alert('Thêm thể loại sách thành công');
+
+            document.getElementById('Name').value = "";
+            document.getElementById('Description').value = "";
+            document.getElementById('isActive').value = 'false';
+		} else {
+			alert('Thêm thể loại sách thất bại');
+		}
+
+        getAll();
+	}
+
+    // const form = document.getElementById('addGenre');
+    document.getElementById('add-btn').addEventListener('click', async (e) => {
+		e.preventDefault();
+		addGenre();
+	});
+
+    document.getElementById('save-btn').addEventListener('click', async (e) => {
+        e.preventDefault();
+        updateGenre();
+    });
+
+    async function getAll() {
+        try {
+            const res = await fetch('/api/genres');
+            let html = '';
+            document.querySelector('tbody').innerHTML = '';
+
+            if (res.ok) {
+                const data = await res.json();
+                data.forEach((genre, index) => {
+                    html += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${genre.name}</td>
+                                    <td>${genre.description ? genre.description : 'Không có'}</td>
+                                <td>${genre.isActive ? 'Hoạt động' : 'Không hoạt động'}</td>
+                                <td>
+                                        <button class="btn btn-warning btn-sm edit-btn" 
+                                                data-id="${genre.id}"
+                                            data-name="${genre.name}"
+                                            data-description="${genre.description || ''}"
+                                            data-isactive="${genre.isActive}">Sửa</button>
+                                        <button class="btn btn-danger btn-sm delete-btn" data-id="${genre.id}">Xóa</button>
+                                        
+                                </td>
+                            </tr>
+                        `;
+                });
+            }
+            document.querySelector('tbody').innerHTML = html;
+
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                // console.log(button)
+                button.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    const name = e.target.getAttribute('data-name');
+                    const description = e.target.getAttribute('data-description');
+                    const isActive = e.target.getAttribute('data-isactive') === 'true';
+
+                    // Populate form fields
+                    document.getElementById('GenreId').value = id;
+                    document.getElementById('Name').value = name;
+                    document.getElementById('Description').value = description;
+                    document.getElementById('isActive').value = isActive.toString();
+
+                    document.getElementById('add-btn').classList.add('d-none');
+                    document.getElementById('cancel-btn').classList.remove('d-none');
+                    document.getElementById('save-btn').classList.remove('d-none');
+                });
+            });
+
+            document.getElementById('cancel-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+
+                document.getElementById('GenreId').value = '';
+                document.getElementById('Name').value = '';
+                document.getElementById('Description').value = '';
+                document.getElementById('isActive').value = 'false';
+
+                document.getElementById('add-btn').classList.remove('d-none');
+                document.getElementById('cancel-btn').classList.add('d-none');
+                document.getElementById('save-btn').classList.add('d-none');
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(button => {
+
+                button.addEventListener('click', (e) => {
+                    // e.preventDefault();
+                    const deletedGenreId = e.target.getAttribute('data-id');
+
+                    deleteGenre(deletedGenreId);
+                });
+            });
+        } catch (error) {
+			console.error(error);
+		}
+   
+    }
+
+    getAll();
+
+    async function updateGenre() {
+        const id = document.getElementById('GenreId').value;
+		const name = document.getElementById('Name').value;
+		const description = document.getElementById('Description').value;
+		const isActiveVal = document.getElementById('isActive').value === 'true';
+
+		const response = await fetch(`/api/genres/${id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name,
+				description,
+				isActive: isActiveVal
+			})
+		});
+
+		if (response.ok) {
+			alert('Cập nhật thể loại sách thành công');
+
+			document.getElementById('GenreId').value = '';
+			document.getElementById('Name').value = '';
+			document.getElementById('Description').value = '';
+			document.getElementById('isActive').value = 'false';
+
+			document.getElementById('add-btn').classList.remove('d-none');
+			document.getElementById('cancel-btn').classList.add('d-none');
+			document.getElementById('save-btn').classList.add('d-none');
+		} else {
+			alert('Cập nhật thể loại sách thất bại');
+		}
+
+		getAll();
+
+    }
+
+    async function deleteGenre(deletedGenreId) {
+
+        const response = await fetch(`/api/genres/${deletedGenreId}`, { method: 'DELETE' });
+        if(response.ok) {
+			console.log('Xóa thể loại sách thành công');
+            getAll();
+		} else {
+			alert('Xóa thể loại sách thất bại');
+		}
+    }
+</script>

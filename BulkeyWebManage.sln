@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9D723898-23F7-4360-9A76-F01974A73CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkeyWebManage", "BulkeyWebManage\BulkeyWebManage.csproj", "{D44A2F84-9355-4405-A504-DBB2D3960B94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{8D0B8BCB-6428-4607-93A5-EAC3F7D26B5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8535414A-B0D0-40A8-B4BA-AC7534FAAB90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{EC9CC1CB-EA65-4A7F-9FDF-E421AB35AAC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkeyWebManage.Application", "Application\BulkeyWebManage.Application\BulkeyWebManage.Application.csproj", "{7A15BD2F-5300-484A-BD64-11BA869AE208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkeyWebManage.Domain", "Domain\BulkeyWebManage.Domain\BulkeyWebManage.Domain.csproj", "{59DC3EF5-5333-480C-8D10-9F2EC7AB517C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkeyWebManage.DataAccess", "Infrastructure\BulkeyWebManage.DataAccess\BulkeyWebManage.DataAccess.csproj", "{9D48456D-4B65-49F0-A4CB-0BF19181CEE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkeyWebManage.Infrastructure", "Infrastructure\BulkeyWebManage.Infrastructure\BulkeyWebManage.Infrastructure.csproj", "{43A48192-7B12-4BE8-AB69-151F7B416E5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D44A2F84-9355-4405-A504-DBB2D3960B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D44A2F84-9355-4405-A504-DBB2D3960B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D44A2F84-9355-4405-A504-DBB2D3960B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D44A2F84-9355-4405-A504-DBB2D3960B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A15BD2F-5300-484A-BD64-11BA869AE208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A15BD2F-5300-484A-BD64-11BA869AE208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A15BD2F-5300-484A-BD64-11BA869AE208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A15BD2F-5300-484A-BD64-11BA869AE208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DC3EF5-5333-480C-8D10-9F2EC7AB517C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DC3EF5-5333-480C-8D10-9F2EC7AB517C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DC3EF5-5333-480C-8D10-9F2EC7AB517C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DC3EF5-5333-480C-8D10-9F2EC7AB517C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D48456D-4B65-49F0-A4CB-0BF19181CEE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D48456D-4B65-49F0-A4CB-0BF19181CEE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D48456D-4B65-49F0-A4CB-0BF19181CEE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D48456D-4B65-49F0-A4CB-0BF19181CEE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A48192-7B12-4BE8-AB69-151F7B416E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A48192-7B12-4BE8-AB69-151F7B416E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A48192-7B12-4BE8-AB69-151F7B416E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A48192-7B12-4BE8-AB69-151F7B416E5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D44A2F84-9355-4405-A504-DBB2D3960B94} = {9D723898-23F7-4360-9A76-F01974A73CD4}
+		{7A15BD2F-5300-484A-BD64-11BA869AE208} = {8D0B8BCB-6428-4607-93A5-EAC3F7D26B5B}
+		{59DC3EF5-5333-480C-8D10-9F2EC7AB517C} = {EC9CC1CB-EA65-4A7F-9FDF-E421AB35AAC4}
+		{9D48456D-4B65-49F0-A4CB-0BF19181CEE7} = {8535414A-B0D0-40A8-B4BA-AC7534FAAB90}
+		{43A48192-7B12-4BE8-AB69-151F7B416E5D} = {8535414A-B0D0-40A8-B4BA-AC7534FAAB90}
+	EndGlobalSection
+EndGlobal

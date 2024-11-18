@@ -1,0 +1,81 @@
+[
+  {
+    "ContainingType": "BulkeyWebManage.Areas.Admin.Controllers.GenreController",
+    "Method": "GetAllGenres",
+    "RelativePath": "api/genres",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulkeyWebManage.Areas.Admin.Controllers.GenreController",
+    "Method": "CreateGenre",
+    "RelativePath": "api/genres",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createGenreDTO",
+        "Type": "BulkeyWebManage.Application.DTOs.CreateGenreDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulkeyWebManage.Areas.Admin.Controllers.GenreController",
+    "Method": "GetGenreById",
+    "RelativePath": "api/genres/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulkeyWebManage.Areas.Admin.Controllers.GenreController",
+    "Method": "UpdateGenre",
+    "RelativePath": "api/genres/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateGenreDTO",
+        "Type": "BulkeyWebManage.Application.DTOs.UpdateGenreDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulkeyWebManage.Areas.Admin.Controllers.GenreController",
+    "Method": "DeleteGenre",
+    "RelativePath": "api/genres/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
